@@ -9,7 +9,9 @@ import ListAltOutlinedIcon from '@material-ui/icons/ListAltOutlined';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
 import CreateIcon from '@material-ui/icons/Create';
 import Hidden from '@material-ui/core/Hidden';
-import { useHomeStyles } from '../Pages/Home';
+import { useHomeStyles } from '../Pages/Home/theme';
+import { ModalDialog } from './ModalBlock';
+import { AddTweetForm } from './AddTweetForm';
 
 interface SideMenuProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -18,6 +20,16 @@ interface SideMenuProps {
 export const SideMenu: React.FC<SideMenuProps> = ({
   classes,
 }: SideMenuProps): React.ReactElement => {
+  const [visibleAddTweet, setVisibleAddTweet] = React.useState<boolean>(false);
+
+  const handleClickAddOpenTweet = () => {
+    setVisibleAddTweet(true);
+  };
+
+  const onCloseAddTweet = () => {
+    setVisibleAddTweet(false);
+  };
+
   return (
     <ul className={classes.sideMenuList}>
       <li className={classes.sideMenuItem}>
@@ -89,12 +101,22 @@ export const SideMenu: React.FC<SideMenuProps> = ({
         </div>
       </li>
       <li className={classes.sideMenuItem}>
-        <Button className={classes.sideMenuButton} fullWidth color="primary" variant="contained">
+        <Button
+          onClick={handleClickAddOpenTweet}
+          className={classes.sideMenuButton}
+          fullWidth
+          color="primary"
+          variant="contained">
           <Hidden smDown>Твитнуть</Hidden>
           <Hidden mdUp>
             <CreateIcon />
           </Hidden>
         </Button>
+        <ModalDialog onClose={onCloseAddTweet} open={visibleAddTweet}>
+          <div style={{ width: 550 }}>
+            <AddTweetForm maxRows={15} classes={classes} />
+          </div>
+        </ModalDialog>
       </li>
     </ul>
   );

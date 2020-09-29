@@ -1,11 +1,11 @@
 import React from 'react';
-import { useHomeStyles } from '../Pages/Home';
+import { useHomeStyles } from '../Pages/Home/theme';
 import CommentsIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import LikeIcon from '@material-ui/icons/FavoriteBorder';
 import ReplyIcon from '@material-ui/icons/Reply';
 import classNames from 'classnames';
-import { Avatar, Grid, IconButton, Paper, Typography } from '@material-ui/core';
+import { Avatar, IconButton, Paper, Typography } from '@material-ui/core';
 
 interface TweetProps {
   text: string;
@@ -24,21 +24,27 @@ export const Tweet: React.FC<TweetProps> = ({
 }: TweetProps): React.ReactElement => {
   return (
     <Paper className={classNames(classes.twittsWrapperHeader, classes.twitt)} variant="outlined">
-      <Avatar
-        className={classes.tweetAvatar}
-        alt={`Аватар пользователя ${user.fullname}`}
-        src={user.avatarUrl}
-      />
+      <div style={{ display: 'flex' }}>
+        <div style={{ marginRight: 20 }}>
+          <Avatar
+            className={classes.tweetAvatar}
+            alt={`Аватар пользователя ${user.fullname}`}
+            src={user.avatarUrl}
+          />
+        </div>
 
-      <Typography>
-        <b>{user.username}</b>&nbsp;
-        <span className={classes.twittsUserName}>@{user.fullname}</span>&nbsp;
-        <span className={classes.twittsUserName}>.</span>&nbsp;
-        <span className={classes.twittsUserName}>1ч</span>
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        {text}
-      </Typography>
+        <div>
+          <Typography>
+            <b>{user.username}</b>&nbsp;
+            <span className={classes.twittsUserName}>@{user.fullname}</span>&nbsp;
+            <span className={classes.twittsUserName}>.</span>&nbsp;
+            <span className={classes.twittsUserName}>1ч</span>
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            {text}
+          </Typography>
+        </div>
+      </div>
       <div className={classes.twittsButtons}>
         <div>
           <IconButton color="primary">

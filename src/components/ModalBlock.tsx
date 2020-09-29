@@ -9,7 +9,7 @@ import { useStylesSignIn } from '../Pages/SignIn';
 
 interface ModalProps {
   children: React.ReactNode;
-  title: string;
+  title?: string;
   classes?: ReturnType<typeof useStylesSignIn>;
   open?: boolean;
   onClose: () => void;

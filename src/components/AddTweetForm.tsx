@@ -2,7 +2,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import React, { useState } from 'react';
-import { useHomeStyles } from '../Pages/Home';
+import { useHomeStyles } from '../Pages/Home/theme';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojIcon from '@material-ui/icons/SentimentSatisfiedAltOutlined';
 import TextAreaAutorize from '@material-ui/core/TextareaAutosize';
@@ -12,18 +12,20 @@ import { number } from 'prop-types';
 
 interface AddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
+  maxRows?: number;
 }
 
 const MAX_LENGTH = 280;
 
 export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   classes,
+  maxRows,
 }: AddTweetFormProps): React.ReactElement => {
   const [text, setText] = useState<string>('');
   const textLimit = Math.round((text.length / 280) * 100);
   const maxLength = MAX_LENGTH - text.length;
 
-  const handleChangeTextarea = (e: React.FormEvent<HTMLTextAreaElement>) => {
+  const handleChangeTextarea = (e: React.FormEvent<HTMLTextAreaElement>): void => {
     if (e.currentTarget) {
       setText(e.currentTarget.value);
     }
@@ -34,7 +36,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
   };
 
   return (
-    <div className={classes.addForm}>
+    <div>
       <div className={classes.addFormBody}>
         <Avatar
           className={classes.tweetAvatar}
@@ -46,6 +48,7 @@ export const AddTweetForm: React.FC<AddTweetFormProps> = ({
           value={text}
           className={classes.addFormTextArea}
           placeholder="Что происходит?"
+          rowsMax={maxRows}
         />
       </div>
       <div className={classes.addFormBottom}>
