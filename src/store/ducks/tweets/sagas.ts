@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { setLoadingState, setTweets, TweetsActionsType } from './actionCreators';
-import { TweetsApi } from '../../../services/api/tweetsAPI';
 import { LoadingState } from './contracts/state';
+import { TweetsApi } from '../../../services/api/tweetsAPI';
+import { setLoadingState, setTweets, TweetsActionsType } from './actionCreators';
 
 export function* fetchTweetsRequest() {
   try {
@@ -14,6 +14,6 @@ export function* fetchTweetsRequest() {
   }
 }
 
-export function* tweetsSaga() {
+export function* TweetsSaga() {
   yield takeEvery(TweetsActionsType.FETCH_TWEETS, fetchTweetsRequest);
 }

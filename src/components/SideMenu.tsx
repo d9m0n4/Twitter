@@ -12,6 +12,7 @@ import Hidden from '@material-ui/core/Hidden';
 import { useHomeStyles } from '../Pages/Home/theme';
 import { ModalDialog } from './ModalBlock';
 import { AddTweetForm } from './AddTweetForm';
+import { Link } from 'react-router-dom';
 
 interface SideMenuProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -33,9 +34,11 @@ export const SideMenu: React.FC<SideMenuProps> = ({
   return (
     <ul className={classes.sideMenuList}>
       <li className={classes.sideMenuItem}>
-        <IconButton aria-label="delete" className={classes.logo}>
-          <TwitterIcon color="primary" className={classes.logoIcon} />
-        </IconButton>
+        <Link to="/home">
+          <IconButton aria-label="delete" className={classes.logo}>
+            <TwitterIcon color="primary" className={classes.logoIcon} />
+          </IconButton>
+        </Link>
       </li>
       <li className={classes.sideMenuItem}>
         <div>

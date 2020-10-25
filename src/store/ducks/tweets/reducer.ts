@@ -7,7 +7,7 @@ const initialTweetsState: TweetsState = {
   loadingState: LoadingState.NEVER,
 };
 
-export const tweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsAction) => {
+export const TweetsReducer = produce((draft: Draft<TweetsState>, action: TweetsAction) => {
   switch (action.type) {
     case TweetsActionsType.SET_TWEETS:
       draft.items = action.payload;

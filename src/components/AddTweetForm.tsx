@@ -8,7 +8,6 @@ import EmojIcon from '@material-ui/icons/SentimentSatisfiedAltOutlined';
 import TextAreaAutorize from '@material-ui/core/TextareaAutosize';
 import classnames from 'classnames';
 import Button from '@material-ui/core/Button';
-import { number } from 'prop-types';
 
 interface AddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
